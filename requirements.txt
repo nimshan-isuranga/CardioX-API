@@ -3,4 +3,5 @@ uvicorn
 pydantic
 pickle5
 pyngrok
-tensorflow
+pandas
+ tensorflow-cpu
