@@ -1,7 +1,0 @@
-fastapi
-uvicorn
-pydantic
-pickle5
-pyngrok
-pandas
-tensorflow-cpu
