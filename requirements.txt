@@ -1,0 +1,6 @@
+fastapi
+pydantic
+pickle5
+tensorflow-cpu
+pandas
+numpy
