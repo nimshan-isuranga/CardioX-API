@@ -7,27 +7,6 @@ import pandas as pd
 import tensorflow as tf
 from tensorflow.keras.models import Model
 
-class AutoEncoder(Model):
-  def __init__(self):
-    super(AutoEncoder, self).__init__()
-    self.encoder = tf.keras.Sequential([
-                  tf.keras.layers.Dense(64, activation="relu"),
-                  tf.keras.layers.Dense(32, activation="relu"),
-                  tf.keras.layers.Dense(16, activation="relu"),
-                  tf.keras.layers.Dense(8, activation="relu")
-              ])
-    self.decoder = tf.keras.Sequential([
-                  tf.keras.layers.Dense(16, activation="relu"),
-                  tf.keras.layers.Dense(32, activation="relu"),
-                  tf.keras.layers.Dense(64, activation="relu"),
-                  tf.keras.layers.Dense(140, activation="sigmoid")
-              ])
-  def call(self, x):
-    encoded = self.encoder(x)
-    decoded = self.decoder(encoded)
-    return decoded
-
-model=pickle.load(open('model.pkl','rb'))
 
 app = FastAPI()
 
@@ -182,7 +161,28 @@ class model_input(BaseModel):
   a138:float
   a139:float
   a140:float
+    
+class AutoEncoder(Model):
+  def __init__(self):
+    super(AutoEncoder, self).__init__()
+    self.encoder = tf.keras.Sequential([
+                  tf.keras.layers.Dense(64, activation="relu"),
+                  tf.keras.layers.Dense(32, activation="relu"),
+                  tf.keras.layers.Dense(16, activation="relu"),
+                  tf.keras.layers.Dense(8, activation="relu")
+              ])
+    self.decoder = tf.keras.Sequential([
+                  tf.keras.layers.Dense(16, activation="relu"),
+                  tf.keras.layers.Dense(32, activation="relu"),
+                  tf.keras.layers.Dense(64, activation="relu"),
+                  tf.keras.layers.Dense(140, activation="sigmoid")
+              ])
+  def call(self, x):
+    encoded = self.encoder(x)
+    decoded = self.decoder(encoded)
+    return decoded
 
+model=pickle.load(open('model.pkl','rb'))
 @app.post('/ha_prediction')
 def predicts(input_parameters:model_input):
   input_data=input_parameters.json()
