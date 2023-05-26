@@ -1,5 +1,6 @@
 fastapi
 pydantic
+uvicorn
 pickle5
 tensorflow-cpu
 pandas
