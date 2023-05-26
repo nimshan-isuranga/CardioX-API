@@ -4,4 +4,4 @@ pydantic
 pickle5
 pyngrok
 pandas
- tensorflow-cpu
+tensorflow-cpu
